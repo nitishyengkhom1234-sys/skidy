@@ -1,7 +1,7 @@
 // Vercel Serverless Function: api/analyze.ts
 import { GoogleGenAI, Type } from "@google/genai";
-import { promises as fs } from 'fs';
-import path from 'path';
+// Import the JSON data directly. Vercel will include this in the function bundle.
+import skinDiseaseList from '../skin_diseases.json';
 
 // This function runs on the server, not in the browser.
 
@@ -50,27 +50,13 @@ const responseSchema = {
   },
 };
 
-let skinDiseaseList: SkinDisease[] | null = null;
-
-const getSkinDiseases = async (): Promise<SkinDisease[]> => {
-    if (skinDiseaseList) {
-        return skinDiseaseList;
-    }
-    try {
-        // In Vercel, serverless functions run from the project root directory
-        const filePath = path.join(process.cwd(), 'skin_diseases.json');
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-        const data = JSON.parse(fileContent);
-        skinDiseaseList = data;
-        return data;
-    } catch (error) {
-        console.error("Could not read or parse skin_diseases.json on server:", error);
-        throw new Error("Failed to load the list of skin conditions.");
-    }
+const getSkinDiseases = (): SkinDisease[] => {
+    // The list is now available directly from the import
+    return skinDiseaseList as SkinDisease[];
 }
 
-const generatePrompt = async (): Promise<string> => {
-  const diseases = await getSkinDiseases();
+const generatePrompt = (): string => {
+  const diseases = getSkinDiseases();
   const diseaseListText = diseases.map(disease => `
 - Condition: ${disease.conditionName}
   - Description: ${disease.descriptionForAI}
@@ -107,7 +93,7 @@ export default async function handler(req: any, res: any) {
             return res.status(400).json({ error: 'Missing base64Image or mimeType in request body' });
         }
         
-        const prompt = await generatePrompt();
+        const prompt = generatePrompt();
   
         const imagePart = {
             inlineData: { data: base64Image, mimeType: mimeType },
