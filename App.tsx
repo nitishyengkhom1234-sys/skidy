@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { Header } from './components/Header';
 import { ImageInput } from './components/ImageInput';
@@ -43,7 +42,8 @@ const App: React.FC = () => {
       setResults(analysisResults);
     } catch (err) {
       console.error("Analysis failed:", err);
-      setError("Failed to analyze the image. The AI model may be unable to process this specific image. Please try another one.");
+      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred.";
+      setError(`Failed to analyze image: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
