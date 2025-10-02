@@ -11,8 +11,15 @@ export const analyzeFaceImage = async (base64Image: string, mimeType: string): P
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'The server returned an unreadable error.' }));
-      throw new Error(errorData.error || `Server responded with status: ${response.status}`);
+      let errorMessage = `Server responded with status: ${response.status}`;
+      try {
+        const errorData = await response.json();
+        errorMessage = errorData.error || JSON.stringify(errorData);
+      } catch (e) {
+        const textError = await response.text();
+        errorMessage = textError || 'The server returned an unreadable error.';
+      }
+      throw new Error(errorMessage);
     }
 
     const results: AnalysisResult[] = await response.json();
@@ -23,6 +30,6 @@ export const analyzeFaceImage = async (base64Image: string, mimeType: string): P
     if (error instanceof Error) {
         throw error;
     }
-    throw new Error("An unknown error occurred while communicating with the server.");
+    throw new Error(String(error) || "An unknown error occurred while communicating with the server.");
   }
 };

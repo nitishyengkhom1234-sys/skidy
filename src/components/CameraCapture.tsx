@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 interface CameraCaptureProps {
-  onImageSelect: (file: File) => void;
+  onPhotoCaptured: (file: File) => void;
 }
 
-export const CameraCapture: React.FC<CameraCaptureProps> = ({ onImageSelect }) => {
+export const CameraCapture: React.FC<CameraCaptureProps> = ({ onPhotoCaptured }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -22,25 +22,27 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onImageSelect }) =
       setStream(mediaStream);
     } catch (err) {
       console.error("Error accessing camera:", err);
-      setError("Could not access the camera. Please ensure you have a camera connected and have granted permission to use it.");
+      let message = "Could not access the camera. Please ensure you have a camera connected and have granted permission to use it.";
+      if (err instanceof Error && err.name === "NotAllowedError") {
+        message = "Camera access was denied. Please grant permission in your browser settings.";
+      }
+      setError(message);
     }
   }, []);
   
-  useEffect(() => {
-    // This effect manages the camera stream's lifecycle.
-    // It starts the camera only if there is no active stream and no error.
-    // This prevents an infinite loop on component mount or on camera permission errors.
-    if (!stream && !error) {
-        startCamera();
+  const stopStream = useCallback(() => {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      setStream(null);
     }
+  }, [stream]);
 
-    // The cleanup function will be called when the component unmounts or when
-    // the stream/error state changes. It ensures the camera track is stopped
-    // to release the resource.
+  useEffect(() => {
+    startCamera();
     return () => {
-      stream?.getTracks().forEach(track => track.stop());
+      stopStream();
     };
-  }, [startCamera, stream, error]);
+  }, [startCamera, stopStream]);
 
   const handleCapture = () => {
     if (videoRef.current && canvasRef.current) {
@@ -50,11 +52,13 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onImageSelect }) =
       canvas.height = video.videoHeight;
       const context = canvas.getContext('2d');
       if(context){
+        // Flip the image horizontally for user-facing camera to be intuitive
+        context.translate(video.videoWidth, 0);
+        context.scale(-1, 1);
         context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
         const dataUrl = canvas.toDataURL('image/jpeg');
         setCapturedImage(dataUrl);
-        stream?.getTracks().forEach(track => track.stop());
-        setStream(null);
+        stopStream();
       }
     }
   };
@@ -68,7 +72,7 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({ onImageSelect }) =
         canvasRef.current.toBlob((blob) => {
             if(blob){
                 const file = new File([blob], "capture.jpg", { type: 'image/jpeg' });
-                onImageSelect(file);
+                onPhotoCaptured(file);
             }
         }, 'image/jpeg', 0.95);
     }

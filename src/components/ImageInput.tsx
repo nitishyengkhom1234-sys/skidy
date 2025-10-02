@@ -1,13 +1,13 @@
-
 import React, { useState } from 'react';
 import { ImageUploader } from './ImageUploader';
 import { CameraCapture } from './CameraCapture';
 
 interface ImageInputProps {
     onImageSelect: (file: File) => void;
+    onImageCaptureAndAnalyze: (file: File) => void;
 }
 
-export const ImageInput: React.FC<ImageInputProps> = ({ onImageSelect }) => {
+export const ImageInput: React.FC<ImageInputProps> = ({ onImageSelect, onImageCaptureAndAnalyze }) => {
     const [inputMode, setInputMode] = useState<'upload' | 'camera'>('upload');
 
     const activeTabClass = 'border-b-2 border-blue-600 text-blue-600 font-semibold';
@@ -32,7 +32,7 @@ export const ImageInput: React.FC<ImageInputProps> = ({ onImageSelect }) => {
                 </button>
             </div>
             {inputMode === 'upload' && <ImageUploader onImageSelect={onImageSelect} />}
-            {inputMode === 'camera' && <CameraCapture onImageSelect={onImageSelect} />}
+            {inputMode === 'camera' && <CameraCapture onPhotoCaptured={onImageCaptureAndAnalyze} />}
         </div>
     );
 }
