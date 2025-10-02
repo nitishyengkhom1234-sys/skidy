@@ -1,0 +1,7 @@
+{
+  "name": "FaceHealth AI: Facial Anomaly Detection",
+  "description": "An AI-powered web application that analyzes an uploaded image of a person's face to detect potential skin conditions or health anomalies. Provides informational results with confidence scores and emphasizes consultation with healthcare professionals.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

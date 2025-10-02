@@ -1,0 +1,82 @@
+[
+  {
+    "conditionName": "Acne Vulgaris",
+    "descriptionForAI": "A common inflammatory skin condition affecting hair follicles and sebaceous glands.",
+    "commonLocations": ["Forehead", "Cheeks", "Nose", "Chin (T-zone)", "Jawline"],
+    "keyFeatures": ["Comedones (blackheads and whiteheads)", "Papules (small red bumps)", "Pustules (pus-filled bumps)", "Nodules or cysts in severe cases"],
+    "textureAndAppearance": "Oily skin surface, inflamed lesions, can be painful.",
+    "differentialDiagnosis": "Rosacea (lacks comedones), Perioral Dermatitis."
+  },
+  {
+    "conditionName": "Rosacea",
+    "descriptionForAI": "A chronic inflammatory condition causing persistent facial erythema (redness).",
+    "commonLocations": ["Central face", "Cheeks", "Nose", "Forehead", "Chin"],
+    "keyFeatures": ["Persistent redness/flushing", "Telangiectasias (visible small blood vessels)", "Papules and pustules (but NO comedones)", "Possible skin thickening (rhinophyma on nose)"],
+    "textureAndAppearance": "Sensitive skin, burning or stinging sensation, rough or bumpy texture.",
+    "differentialDiagnosis": "Acne Vulgaris (Rosacea lacks comedones), Seborrheic Dermatitis."
+  },
+  {
+    "conditionName": "Eczema (Atopic Dermatitis)",
+    "descriptionForAI": "A condition that makes skin red and itchy. It's chronic and tends to flare periodically.",
+    "commonLocations": ["Eyelids", "Around the mouth", "Cheeks", "Neck folds"],
+    "keyFeatures": ["Erythematous (red) patches", "Scaling and dryness", "Lichenification (thickened skin from scratching)", "Possible oozing or crusting"],
+    "textureAndAppearance": "Dry, scaly, itchy, inflamed patches.",
+    "differentialDiagnosis": "Psoriasis, Seborrheic Dermatitis, Contact Dermatitis."
+  },
+  {
+    "conditionName": "Psoriasis",
+    "descriptionForAI": "A chronic autoimmune condition that causes the rapid build-up of skin cells.",
+    "commonLocations": ["Hairline", "Eyebrows", "Skin between nose and upper lip"],
+    "keyFeatures": ["Well-demarcated (sharply defined) erythematous plaques", "Silvery-white scales on top of plaques"],
+    "textureAndAppearance": "Thick, raised, scaly patches.",
+    "differentialDiagnosis": "Seborrheic Dermatitis (scales are more greasy and yellow), Eczema."
+  },
+  {
+    "conditionName": "Melasma",
+    "descriptionForAI": "A common pigmentation disorder that causes brown or gray-brown patches to appear on the skin.",
+    "commonLocations": ["Cheeks", "Forehead", "Bridge of the nose", "Upper lip", "Chin (sun-exposed areas)"],
+    "keyFeatures": ["Symmetrical, blotchy hyperpigmented patches", "Irregular borders"],
+    "textureAndAppearance": "Smooth, non-scaly, flat patches of darker skin.",
+    "differentialDiagnosis": "Post-inflammatory Hyperpigmentation, Lentigo (sun spots)."
+  },
+  {
+    "conditionName": "Vitiligo",
+    "descriptionForAI": "An autoimmune condition causing loss of skin color in patches.",
+    "commonLocations": ["Around the mouth and eyes", "Nostrils", "Anywhere on the face"],
+    "keyFeatures": ["Well-defined, depigmented (milky-white) macules or patches"],
+    "textureAndAppearance": "Smooth, flat, non-scaly white patches.",
+    "differentialDiagnosis": "Tinea Versicolor (can be hypopigmented but is fungal and often scaly)."
+  },
+  {
+    "conditionName": "Seborrheic Dermatitis",
+    "descriptionForAI": "A common, inflammatory skin condition that causes flaky scales on an oily base.",
+    "commonLocations": ["Nasolabial folds (smile lines)", "Eyebrows", "Glabella (between eyebrows)", "Sides of nose", "Scalp/hairline"],
+    "keyFeatures": ["Erythema (redness) with greasy scales", "Flakes can be yellowish or white"],
+    "textureAndAppearance": "Greasy, oily, flaky, sometimes itchy.",
+    "differentialDiagnosis": "Psoriasis (scales are more silvery and plaques are thicker), Rosacea."
+  },
+  {
+    "conditionName": "Actinic Keratosis",
+    "descriptionForAI": "A pre-cancerous lesion that appears on sun-damaged skin.",
+    "commonLocations": ["Forehead", "Nose", "Cheeks", "Temples", "Lower lips (sun-exposed areas)"],
+    "keyFeatures": ["Small, rough, scaly spot or patch", "Can be skin-colored, pink, red, or brown"],
+    "textureAndAppearance": "Rough, sandpaper-like texture, better felt than seen.",
+    "differentialDiagnosis": "Squamous Cell Carcinoma, Seborrheic Keratosis (waxy, 'stuck-on' appearance)."
+  },
+  {
+    "conditionName": "Cold Sore (Herpes Simplex)",
+    "descriptionForAI": "A viral infection causing small, fluid-filled blisters on or around the lips.",
+    "commonLocations": ["Vermilion border of the lips", "Around the mouth"],
+    "keyFeatures": ["Grouped vesicles (small blisters) on an erythematous base", "Evolves into pustules, then crusts over"],
+    "textureAndAppearance": "Tingling or burning before eruption, blisters, then a yellow crust.",
+    "differentialDiagnosis": "Impetigo, Angular Cheilitis."
+  },
+  {
+    "conditionName": "Perioral Dermatitis",
+    "descriptionForAI": "An inflammatory rash involving the skin around the mouth.",
+    "commonLocations": ["Around the mouth", "Nasolabial folds", "Sometimes around the nose or eyes", "Characteristically spares the skin border of the lips"],
+    "keyFeatures": ["Clusters of small, erythematous papules and pustules", "May have some scaling"],
+    "textureAndAppearance": "Bumpy, red rash, can be itchy or have a burning sensation.",
+    "differentialDiagnosis": "Acne Vulgaris, Rosacea, Seborrheic Dermatitis."
+  }
+]
